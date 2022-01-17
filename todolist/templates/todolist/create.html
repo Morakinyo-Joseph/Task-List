@@ -1,0 +1,15 @@
+{% extends 'todolist/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+    Create New
+
+    <form action="/create/" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit" name="save"> Create New </button>
+    </form>
+
+{% endblock %}
