@@ -1,0 +1,42 @@
+{% extends 'todolist/base.html' %}
+
+{% block title %} Task viewer {% endblock %}
+
+{% block content %}
+
+    <h1> {{ name.name }} List</h1>
+    <form action="#" method="post">
+        {% csrf_token %}
+    <ul>
+        {% for task in name.examples_set.all %}
+
+            {% if task.complete == True %}
+                <li> <input type="checkbox" value="clicked" name="C{{ task.id }}" checked> {{ task.task }}
+                        <br>
+                    delete:<input type="checkbox" value="delete" name="{{ task.id }}">
+                </li>
+
+            {% elif task.complete == False %}
+                <li> <input type="checkbox" value="clicked" name="C{{ task.id }}"> {{ task.task }}
+                        <br>
+                    delete:<input type="checkbox" value="delete" name="{{ task.id }}">
+                </li>
+            {% endif %}
+
+        {% endfor %}
+    </ul>
+
+    <button type="submit" name="save" value="save">Save</button>
+
+    <button type="submit" name="delete" value="delete">Delete</button>
+
+        <br>
+        <br>
+
+    Write Task: <input type="text" name="writeTask" >
+
+    <button type="submit" name="addTask" value="addTask">Add Task</button>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'todolist/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+    <h1>Lists</h1>
+
+
+    <form action="/view/" method="post">
+
+
+        {% csrf_token %}
+        {% for lists in name %}
+        <ul>
+            <li>
+                {{ lists }}: id = {{ lists.id }}
+                <br>
+                delete: <input type="checkbox" value="del_from_list" name="{{ lists.id }}">
+            </li>
+        </ul>
+        {% endfor %}
+
+        <button type="submit" value="delete" name="delete">delete</button>
+    </form>
+
+{% endblock %}
